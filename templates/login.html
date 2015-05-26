@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Security Intro - Log Injection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+		<div class="alert alert-danger" role="alert">
+		  <span class="sr-only">Error:</span>
+		  {{ message }}		
+		</div>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <body>
+    <div class="container">
+      <h1>Please login</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{
+          request.form.username }}">
+         <input type="password" placeholder="Password" name="password" value="{{
+          request.form.password }}">
+        <input class="btn btn-default" type="submit" value="Login">
+      </form>
+	  <br/>
+	  <br/>
+	  <h4>Log Events</h4>
+      {% if errors %}
+	  <table class="table table-striped">
+      	{% for error in errors %}
+	 	 <tr>
+	  		<td> {{ error }}</td>
+		</tr>
+	    {% endfor %}	
+		
+  	  </table>
+			
+      {% endif %}
+    </div>
+  </body>
+</html>
